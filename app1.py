@@ -1,12 +1,17 @@
 from flask import Flask
+import telegram
+# Create the application instance
+app = Flask(__name__)
 
-app=Flask(__name__)
+TOKEN ='6244092180:AAH_10MCMX4wAESk6TTp-iboI1EMSe6FeZ8'
+bot = telegram.Bot(TOKEN)
+chat_id = '1432402481'
 
-@app.route('/')
-def info():
-    return "Salom Davronshox"
-@app.route('/davron')
-def about():
-    return "My name is Davron,My lastname is Do'stqobilov.\nI am 20 years old. I study in SamTATU"
+# route for index page
+@app.route('/', methods=['POST'])
+def index():
+    print('index page')
+    bot.send_message(chat_id=chat_id, text='Hello World!!!')
+    return 'index page'
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)
